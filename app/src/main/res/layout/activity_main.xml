@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0E1A"
+    android:fillViewport="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center">
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="🎯" android:textSize="64sp"
+            android:layout_marginTop="40dp" android:layout_marginBottom="6dp"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="UP Quiz Live" android:textSize="26sp"
+            android:textStyle="bold" android:textColor="#A78BFA"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="📺 UTTAR PRADESH LEKHPAL" android:textSize="12sp"
+            android:textColor="#8899BB" android:layout_marginBottom="32dp"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:background="@drawable/card_bg"
+            android:padding="22dp" android:layout_marginBottom="16dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="👤 अपना नाम डालो" android:textSize="12sp"
+                android:textColor="#8899BB" android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText android:id="@+id/etName"
+                android:layout_width="match_parent" android:layout_height="52dp"
+                android:hint="जैसे: Rahul Kumar" android:hintTextColor="#3A4A6A"
+                android:textColor="#F0F4FF" android:textSize="15sp"
+                android:background="@drawable/input_bg" android:padding="14dp"
+                android:inputType="textPersonName" android:maxLength="20"
+                android:layout_marginBottom="14dp"/>
+
+            <Button android:id="@+id/btnJoin"
+                android:layout_width="match_parent" android:layout_height="52dp"
+                android:text="▶  Join Live Quiz" android:textSize="15sp"
+                android:textStyle="bold" android:textColor="#FFFFFF"
+                android:background="@drawable/btn_primary"
+                android:layout_marginBottom="8dp"/>
+
+            <Button android:id="@+id/btnStop"
+                android:layout_width="match_parent" android:layout_height="48dp"
+                android:text="⏹  Service बंद करो" android:textSize="14sp"
+                android:textColor="#FF4F6B" android:background="@drawable/btn_danger"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <TextView android:id="@+id/tvStatus"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="👆 नाम डालो और Join करो" android:textSize="13sp"
+            android:textColor="#8899BB" android:gravity="center"
+            android:lineSpacingMultiplier="1.5" android:layout_marginBottom="20dp"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:background="@drawable/card_bg"
+            android:padding="18dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="कैसे काम करता है?" android:textSize="13sp"
+                android:textStyle="bold" android:textColor="#A78BFA"
+                android:layout_marginBottom="10dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="1️⃣  Join करो → App minimize हो जाएगा"
+                android:textSize="12sp" android:textColor="#8899BB" android:layout_marginBottom="5dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="2️⃣  YouTube Stream खोलो"
+                android:textSize="12sp" android:textColor="#8899BB" android:layout_marginBottom="5dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="3️⃣  Question आने पर Popup अपने आप आएगा ✅"
+                android:textSize="12sp" android:textColor="#8899BB" android:layout_marginBottom="5dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="4️⃣  A/B/C/D/E tap करो → Vote हो जाएगा"
+                android:textSize="12sp" android:textColor="#8899BB"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
