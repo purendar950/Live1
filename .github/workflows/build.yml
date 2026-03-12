@@ -1,58 +1,47 @@
 name: Build APK
-
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
-
-      - name: Make gradlew executable
-        run: chmod +x gradlew
-
+      - name: Create debug keystore
+        run: |
+          mkdir -p $HOME/.android
+          keytool -genkeypair -v \
+            -keystore $HOME/.android/debug.keystore \
+            -alias androiddebugkey \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass android -keypass android \
+            -dname "CN=Android Debug,O=Android,C=US"
       - name: Fix Gradle Wrapper JAR
         run: |
-          # Download the real gradle-wrapper.jar (often missing/empty in repos)
           curl -L "https://github.com/gradle/gradle/raw/v8.9.0/gradle/wrapper/gradle-wrapper.jar" \
             -o gradle/wrapper/gradle-wrapper.jar
-          ls -lh gradle/wrapper/gradle-wrapper.jar
-
+      - name: Make gradlew executable
+        run: chmod +x gradlew
       - name: Build Release APK
         run: ./gradlew assembleRelease --stacktrace --warning-mode all
-
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: UP-Quiz-Live-APK
-          path: app/build/outputs/apk/release/app-release.apk
-
+          path: app/build/outputs/apk/release/*.apk
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
           name: UP Quiz Live v1.0.${{ github.run_number }}
-          files: app/build/outputs/apk/release/app-release.apk
-          body: |
-            ## UP Quiz Live APK 🎯
-            **UTTAR PRADESH LEKHPAL** Channel के Viewers के लिए
-            ### Install करो:
-            1. APK Download करो
-            2. Install करो (Unknown Sources ON करो)
-            3. Display over other apps Permission दो
-            4. नाम डालो → Join करो
-            5. YouTube खोलो → Question आने पर Popup दिखेगा!
+          files: app/build/outputs/apk/release/*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
